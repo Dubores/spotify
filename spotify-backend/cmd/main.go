@@ -42,6 +42,8 @@ func main() {
 	fmt.Println("SPOTIFY_ID:", os.Getenv("SPOTIFY_ID"))
 	r := gin.Default()
 
+	r.LoadHTMLGlob("../templates/*")
+
 	r.GET("/login", func(c *gin.Context) {
 		url := auth.AuthURL(state)
 		c.Redirect(http.StatusTemporaryRedirect, url)
@@ -61,7 +63,9 @@ func main() {
 			return
 		}
 
-		c.JSON(http.StatusOK, topTracks)
+		c.HTML(http.StatusOK, "tracks.tmpl", gin.H{
+			"tracks": topTracks.Tracks,
+		})
 	})
 
 	r.Run(":8080")
