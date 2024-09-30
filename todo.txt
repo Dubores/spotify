@@ -1,0 +1,8 @@
+TASKS
+
+1. Github Repo - KUBA
+2. Investigate Spotify API In Progress
+3. Database -
+4. Backend - Golang
+5. Proof of concept
+6. Business case
