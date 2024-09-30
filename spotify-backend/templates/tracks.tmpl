@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Top Tracks</title>
+</head>
+<body>
+    <h1>Top Tracks</h1>
+    {{range .tracks}}
+    <div>
+        <h3>{{.Name}}</h3>
+        <p>Artist: {{(index .Artists 0).Name}}</p>
+        {{range .Album.Images}}
+        <img src="{{.URL}}" alt="Album Cover" width="{{.Width}}" height="{{.Height}}">
+        {{end}}
+    </div>
+    {{end}}
+</body>
+</html>
