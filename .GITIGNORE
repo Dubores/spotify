@@ -1,1 +1,18 @@
 .env
+
+# Dependency directories
+spotify-frontend//node_modules
+
+# Environment files
+spotify-frontend/.env
+spotify-frontend/.env.local
+spotify-frontend/.env.development
+spotify-frontend/.env.test
+spotify-frontend/.env.production
+
+# Build files
+spotify-frontend/build
+spotify-frontend/dist
+
+# Cache files
+spotify-frontend//.cache

@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/zmb3/spotify/v2"
@@ -42,11 +43,20 @@ func main() {
 	fmt.Println("SPOTIFY_ID:", os.Getenv("SPOTIFY_ID"))
 	r := gin.Default()
 
+	// Use the Cors middleware
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"http://localhost:3000"}
+	r.Use(cors.New(config))
+
 	r.LoadHTMLGlob("../templates/*")
 
 	r.GET("/login", func(c *gin.Context) {
 		url := auth.AuthURL(state)
 		c.Redirect(http.StatusTemporaryRedirect, url)
+	})
+
+	r.GET("/spotify/auth-url", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"authURL": auth.AuthURL(state)})
 	})
 
 	r.GET("/callback", func(c *gin.Context) {
