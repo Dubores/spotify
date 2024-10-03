@@ -4,16 +4,8 @@ import React, { useState, useEffect } from 'react';
 const LoginButton = () => {
   const [authURL, setAuthURL] = useState('');
 
-  useEffect(() => {
-    fetch('http://localhost:8080/spotify/auth-url')
-      .then(response => response.json())
-      .then(data => setAuthURL(data.authURL));
-  }, []);
-
   const handleLoginClick = () => {
-    if (authURL) {
-      window.location.href = authURL;
-    }
+    window.location.href = "http://localhost:8080/login";
   };
 
   return (
